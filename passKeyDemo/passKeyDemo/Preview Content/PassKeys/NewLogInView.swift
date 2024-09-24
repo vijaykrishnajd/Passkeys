@@ -11,6 +11,7 @@ struct NewLoginView: View {
     
     @StateObject private var viewModel = LoginViewModel()
     @State private var userName: String = ""
+    @State private var password: String = ""
     
     var body: some View {
         
@@ -19,6 +20,12 @@ struct NewLoginView: View {
             TextField("Username", text: $userName)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding()
+                .textContentType(.username)
+            
+            SecureField("Password", text: $password)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .padding()
+                .textContentType(.password)
 
             Button("Sign In") {
                 // Use the current window's scene to get the anchor
@@ -27,6 +34,7 @@ struct NewLoginView: View {
                     viewModel.signIn(anchor: window, preferImmediatelyAvailableCredentials: true)
                 }
             }
+            
             .padding()
 
             Button("Sign Up") {

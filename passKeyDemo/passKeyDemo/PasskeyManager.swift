@@ -67,6 +67,7 @@ class PasskeyManager: NSObject {
 extension PasskeyManager: ASAuthorizationControllerDelegate, ASAuthorizationControllerPresentationContextProviding {
     
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+        
         if let registration = authorization.credential as? ASAuthorizationPlatformPublicKeyCredentialRegistration {
             let credentialID = registration.credentialID
             // Save credentialID securely (e.g., in Keychain)
